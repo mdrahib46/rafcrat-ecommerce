@@ -8,7 +8,7 @@ const Shop = () => {
     <Wrapper title={"Shop | RAFCRAFT"}>
       <Bredcrum name={"Shop"} />
 
-      <div class="container grid lg:grid-cols-4 gap-6 pt-4 pb-16 items-start relative">
+      <div className="container grid lg:grid-cols-4 gap-6 pt-4 pb-16 items-start relative">
         <ProductFilter />
         <div className="col-span-3">
           <Products column={3} />

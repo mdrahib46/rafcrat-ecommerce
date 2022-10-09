@@ -4,6 +4,8 @@ import { lazy } from "react";
 const Home = lazy(() => import("../pages/Home"));
 const Shop = lazy(() => import("../pages/Shop"));
 const Product = lazy(() => import("../pages/Product"));
+const Cart = lazy(() => import("../pages/Cart"));
+const Checkout = lazy(() => import("../pages/Checkout"));
 
 export const routes = [
   {
@@ -19,6 +21,16 @@ export const routes = [
   {
     path: "/:productSlug",
     element: Product,
+    role: ["*"],
+  },
+  {
+    path: "/cart",
+    element: Cart,
+    role: ["*"],
+  },
+  {
+    path: "/checkout",
+    element: Checkout,
     role: ["*"],
   },
 ];

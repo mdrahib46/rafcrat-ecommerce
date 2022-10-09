@@ -49,8 +49,8 @@ const Header = () => {
               </div>
               <div className="text-xs leading-3">Wish List</div>
             </a>
-            <a
-              href="cart.html"
+            <Link
+              to="/cart"
               className="lg:block text-center text-gray-700 hover:text-primary transition hidden relative"
             >
               <span className="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
@@ -60,7 +60,7 @@ const Header = () => {
                 <i className="fas fa-shopping-bag"></i>
               </div>
               <div className="text-xs leading-3">Cart</div>
-            </a>
+            </Link>
             <a
               href="account.html"
               className="block text-center text-gray-700 hover:text-primary transition"
