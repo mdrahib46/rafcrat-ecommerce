@@ -9,9 +9,9 @@ const Home = () => {
     <Wrapper title="Home | Ecommerce">
       <Banner />
       <Features />
-      <Products title={"top new arrival"} />
+      <Products title={"top new arrival"} column={4} />
       <Ad />
-      <Products title={"recomended for you"} />
+      <Products title={"recomended for you"} column={4} />
     </Wrapper>
   );
 };

@@ -1,17 +1,7 @@
-import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import TopBarProgress from "react-topbar-progress-indicator";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { routes } from "../routes/routes";
-
-TopBarProgress.config({
-  barColors: {
-    0: "#fff",
-    "1.0": "#fff",
-  },
-  shadowBlur: 5,
-});
 
 const Main = () => {
   const publicRoutes = routes.filter((route) => route.role.includes("*"));
@@ -19,13 +9,28 @@ const Main = () => {
   return (
     <div>
       <Header />
-      <Suspense fallback={<TopBarProgress />}>
-        <Routes>
-          {publicRoutes.map((route, key) => (
-            <Route key={key} path={route.path} element={<route.element />} />
-          ))}
-        </Routes>
-      </Suspense>
+      <Routes>
+        {publicRoutes.map((route, key) => (
+          <Route key={key} path={route.path}>
+            {route.children ? (
+              route.children.map((subRoute, i) =>
+                subRoute.path === "/" ? (
+                  <Route key={i} index={true} element={<subRoute.element />} />
+                ) : (
+                  <Route
+                    key={i}
+                    index={false}
+                    path={subRoute.path}
+                    element={<subRoute.element />}
+                  />
+                )
+              )
+            ) : (
+              <Route path={route.path} element={<route.element />} />
+            )}
+          </Route>
+        ))}
+      </Routes>
       <Footer />
     </div>
   );
