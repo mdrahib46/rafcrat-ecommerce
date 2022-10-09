@@ -130,18 +130,18 @@ const Header = () => {
             {/* <!-- nav menu --> */}
             <div className="flex items-center justify-between flex-grow pl-12">
               <div className="flex items-center space-x-6 text-base capitalize">
-                <a
-                  href="index.html"
+                <Link
+                  to="/"
                   className="text-gray-200 hover:text-white transition"
                 >
                   Home
-                </a>
-                <a
-                  href="shop.html"
+                </Link>
+                <Link
+                  to="/shop"
                   className="text-gray-200 hover:text-white transition"
                 >
                   Shop
-                </a>
+                </Link>
                 <a
                   href="#"
                   className="text-gray-200 hover:text-white transition"

@@ -1,13 +1,14 @@
 import Product from "./Product";
 
-const Products = ({ title, products }) => {
+const Products = ({ title, products, column }) => {
+  let columnStyle = column ? `lg:grid-cols-${column}` : `lg:grid-cols-3`;
   return (
-    <div class="container pb-16">
-      <h2 class="text-2xl md:text-3xl font-medium text-gray-800 uppercase mb-6">
+    <div className="container pb-16">
+      <h2 className="text-2xl md:text-3xl font-medium text-gray-800 uppercase mb-6">
         {title}
       </h2>
       {/* <!-- product wrapper --> */}
-      <div class="grid lg:grid-cols-4 sm:grid-cols-2 gap-6">
+      <div className={`grid ${columnStyle} sm:grid-cols-2 gap-6`}>
         {/* <!-- single product --> */}
         <Product />
         <Product />
