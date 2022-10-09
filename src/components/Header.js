@@ -155,12 +155,12 @@ const Header = () => {
                   Contact us
                 </a>
               </div>
-              <a
-                href="login.html"
+              <Link
+                to="/login"
                 className="ml-auto justify-self-end text-gray-200 hover:text-white transition"
               >
                 Login/Register
-              </a>
+              </Link>
             </div>
             {/* <!-- nav menu end --> */}
           </div>
