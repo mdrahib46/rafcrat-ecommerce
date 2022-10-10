@@ -1,7 +1,11 @@
 import Main from "./pages/Main";
+import useAuthCheck from "./hooks/useAuthCheck";
 
 const App = () => {
-  return <Main />;
+  const authCheck = useAuthCheck();
+  return !authCheck ? <div>Loading....</div>: (
+    <Main />
+  );
 };
 
 export default App;

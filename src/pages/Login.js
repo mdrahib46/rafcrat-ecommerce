@@ -1,7 +1,33 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Wrapper from "../components/layouts/Wrapper";
+import { useForm } from 'react-hook-form';
+import { useEffect, useState } from "react";
+import { useLoginMutation } from "../features/auth/authApi";
 
 const Login = () => {
+  const [error, setError] = useState('');
+  const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
+
+  const [login, { isLoading, error: responseError, data }] = useLoginMutation();
+
+  useEffect(() => { 
+     if (responseError?.data) {
+      setError(responseError?.data?.message);
+     }
+
+     if (data?.token && data?.user) {
+      navigate('/account');
+     }
+
+  }, [data, responseError])
+
+  // login handler
+  const loginhandler = (data) => {
+    setError('');
+    login(data);
+  }
+
   return (
     <Wrapper title="Login | RAFCRAFT">
       <div class="container py-16">
@@ -10,13 +36,15 @@ const Login = () => {
           <p class="text-gray-600 mb-6 text-sm">
             Login if you are a returing customer
           </p>
-          <form action="">
+            { error && <p className="text-primary py-2">{error}</p> }
+          <form onSubmit={handleSubmit(loginhandler)}>
             <div class="space-y-4">
               <div>
                 <label class="text-gray-600 mb-2 block">
                   Email Address <span class="text-primary">*</span>
                 </label>
                 <input
+                  {...register('email')}
                   type="email"
                   class="input-box"
                   placeholder="example@mail.com"
@@ -27,6 +55,7 @@ const Login = () => {
                   Password <span class="text-primary">*</span>
                 </label>
                 <input
+                  {...register('password')}
                   type="password"
                   class="input-box"
                   placeholder="type password"
@@ -39,6 +68,7 @@ const Login = () => {
                   type="checkbox"
                   id="agreement"
                   class="text-primary focus:ring-0 rounded-sm cursor-pointer"
+                  required
                 />
                 <label
                   for="agreement"
@@ -53,6 +83,7 @@ const Login = () => {
             </div>
             <div class="mt-4">
               <button
+                disabled={isLoading}
                 type="submit"
                 class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium"
               >
