@@ -1,7 +1,15 @@
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import avatar from "../../assets/images/avatar.png";
+import { userLoggedOut } from "../../features/auth/authSlice";
 
 const AccountWrapper = ({ children }) => {
+  const dispatch = useDispatch();
+    // logout
+    const logout = () => {
+      dispatch(userLoggedOut());
+      localStorage.clear();
+  }
   return (
     <div class="container lg:grid grid-cols-12 items-start gap-6 pt-4 pb-16">
       {/* <!-- sidebar --> */}
@@ -133,7 +141,7 @@ const AccountWrapper = ({ children }) => {
           {/* <!-- single NavLink end --> */}
           {/* <!-- single NavLink --> */}
           <div class="pl-8 pt-4">
-            <button class="relative medium capitalize text-gray-800 font-medium hover:text-primary transition block">
+            <button onClick={logout} class="relative medium capitalize text-gray-800 font-medium hover:text-primary transition block">
               logout
               <span class="absolute -left-8 top-0 text-base">
                 <i class="fas fa-sign-out-alt"></i>
